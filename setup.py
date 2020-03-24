@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="rodeo_utils",
+    name="rodeo-utils",
     version="0.0.1",
     author="Dmitry Bikmetov",
     author_email="bikdm12@gmail.com",
@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/bikdm12/rodeo_utils",
+    license='MIT',
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 2",
