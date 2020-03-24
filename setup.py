@@ -1,11 +1,12 @@
 import setuptools
+from rodeo_utils import __version__
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="rodeo-utils",
-    version="0.0.1",
+    version= __version__,
     author="Dmitry Bikmetov",
     author_email="bikdm12@gmail.com",
     description="A parser and a set of useful functions for handling RODEO output",
