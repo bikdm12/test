@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="rodeo-utils",
+    name="rodeo_utils",
     version="0.0.1",
     author="Dmitry Bikmetov",
     author_email="bikdm12@gmail.com",
