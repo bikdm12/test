@@ -1,14 +1,13 @@
-Welcome to rodeo-utils's documentation!
+Welcome to rodeo-utils documentation!
 =======================================
-
-.. automodule:: rodeo_utils.rodeo_utils
-    :members:
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   main
+   convert
+   accessory
 
 Indices and tables
 ==================

@@ -72,9 +72,9 @@ def check_if_border(feature, operon_borders):
 
 
 def convert_gbk(gb_dir, gb_out_dir, rodeo_output, bg_domains, max_intergenic_distance = 100, product_class = 'thiopeptide'):
-    """Convert a common genbank file to the genbank antiSMASH output.
+    """Convert a common genbank file to the genbank that mimics antiSMASH output.
     
-    Adds a feature “cluster” with information about the class of the product.
+    Adds a feature 'cluster' with information about the class of the product.
     The coordinates of this feature are boundaries of the group of adjacent genes on the same strand that includes RODEO query.
     Marks genes with given domains as biosynthetic.
 
