@@ -44,7 +44,7 @@
 <span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqIO</span>
 <span class="kn">from</span> <span class="nn">Bio.SeqFeature</span> <span class="k">import</span> <span class="n">SeqFeature</span><span class="p">,</span> <span class="n">FeatureLocation</span>
 
-<div class="viewcode-block" id="RodeoOutput"><a class="viewcode-back" href="../../source/rodeo_utils.html#rodeo_utils.rodeo_utils.RodeoOutput">[docs]</a><span class="k">class</span> <span class="nc">RodeoOutput</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="RodeoOutput"><a class="viewcode-back" href="../../main.html#rodeo_utils.rodeo_utils.RodeoOutput">[docs]</a><span class="k">class</span> <span class="nc">RodeoOutput</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Object that stores rodeo output for a single query as attributes.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>    
@@ -55,7 +55,7 @@
         <span class="sd">&quot;&quot;&quot;list of list: Corresponding part of rodeo output main_co_occur.csv table. Contains rows of the table as lists.&quot;&quot;&quot;</span>
         <span class="c1"># TODO: Add attributes: lists for left and rigth query neighbours.</span>
     
-<div class="viewcode-block" id="RodeoOutput.table_proccessing"><a class="viewcode-back" href="../../source/rodeo_utils.html#rodeo_utils.rodeo_utils.RodeoOutput.table_proccessing">[docs]</a>    <span class="k">def</span> <span class="nf">table_proccessing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bg_domains</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">table_proccessing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bg_domains</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="c1"># TODO: Split into two methods. </span>
         <span class="bp">self</span><span class="o">.</span><span class="n">biosynthetic_genes</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="sd">&quot;&quot;&quot;list of str: List of proteins (accession numbers) that contain domains from a given list&quot;&quot;&quot;</span>
@@ -93,18 +93,18 @@
                      
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">query</span> <span class="ow">in</span> <span class="n">operon_buffer</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">operon_accs</span> <span class="o">=</span> <span class="n">operon_buffer</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">operon_domains</span> <span class="o">=</span> <span class="n">operon_domain_buffer</span></div></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">operon_domains</span> <span class="o">=</span> <span class="n">operon_domain_buffer</span></div>
 
-<div class="viewcode-block" id="RodeoDirError"><a class="viewcode-back" href="../../source/rodeo_utils.html#rodeo_utils.rodeo_utils.RodeoDirError">[docs]</a><span class="k">class</span> <span class="nc">RodeoDirError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">RodeoDirError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Exception to raise if rodeo_output_iterator failed to infer the structure of the given directory.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rod_dir</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rod_dir</span> <span class="o">=</span> <span class="n">rod_dir</span>
     <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s1">&#39;Failed to infer the structure of </span><span class="si">%s</span><span class="s1"> directory. It must be either RODEO output or rodout/ folder of the RIPPER output.&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">rod_dir</span></div>
+        <span class="k">return</span> <span class="s1">&#39;Failed to infer the structure of </span><span class="si">%s</span><span class="s1"> directory. It must be either RODEO output or rodout/ folder of the RIPPER output.&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">rod_dir</span>
 
-<div class="viewcode-block" id="rodeo_output_iterator"><a class="viewcode-back" href="../../source/rodeo_utils.html#rodeo_utils.rodeo_utils.rodeo_output_iterator">[docs]</a><span class="k">def</span> <span class="nf">rodeo_output_iterator</span><span class="p">(</span><span class="n">rod_dir</span><span class="p">):</span>
+<div class="viewcode-block" id="rodeo_output_iterator"><a class="viewcode-back" href="../../main.html#rodeo_utils.rodeo_utils.rodeo_output_iterator">[docs]</a><span class="k">def</span> <span class="nf">rodeo_output_iterator</span><span class="p">(</span><span class="n">rod_dir</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Iterate over RODEO output.</span>
 
 <span class="sd">    Parameters</span>
