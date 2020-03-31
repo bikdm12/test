@@ -1,0 +1,30 @@
+rodeo\_utils package
+====================
+
+Submodules
+----------
+
+rodeo\_utils.rodeo2antismash module
+-----------------------------------
+
+.. automodule:: rodeo_utils.rodeo2antismash
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+rodeo\_utils.rodeo\_utils module
+--------------------------------
+
+.. automodule:: rodeo_utils.rodeo_utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: rodeo_utils
+    :members:
+    :undoc-members:
+    :show-inheritance:

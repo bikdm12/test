@@ -1,0 +1,249 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>rodeo_utils package &#8212; rodeo-utils 0.0.2 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="rodeo-utils-package">
+<h1>rodeo_utils package<a class="headerlink" href="#rodeo-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-rodeo_utils.rodeo2antismash">
+<span id="rodeo-utils-rodeo2antismash-module"></span><h2>rodeo_utils.rodeo2antismash module<a class="headerlink" href="#module-rodeo_utils.rodeo2antismash" title="Permalink to this headline">¶</a></h2>
+<p>Convert sequence in a common genbank format to genbank output of antiSMASH.</p>
+<p>The main function is convert_gbk(…).</p>
+<dl class="function">
+<dt id="rodeo_utils.rodeo2antismash.check_if_border">
+<code class="descclassname">rodeo_utils.rodeo2antismash.</code><code class="descname">check_if_border</code><span class="sig-paren">(</span><em>feature</em>, <em>operon_borders</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo2antismash.html#check_if_border"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo2antismash.check_if_border" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return start/end coordinate of the SeqFeature if its accession is the first/last in the given tuple.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feature</strong> (<em>SeqFeature</em>) – Directory with input genbank files.</li>
+<li><strong>operon_borders</strong> (<em>str</em>) – Directory to store the output.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>The first value is either ‘end’ or ‘start’.
+The second value is the corresponding coordinate.</p>
+<p>If SeqFeature’s ID is not in the given tuple, returns None.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(str, int)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="rodeo_utils.rodeo2antismash.convert_gbk">
+<code class="descclassname">rodeo_utils.rodeo2antismash.</code><code class="descname">convert_gbk</code><span class="sig-paren">(</span><em>gb_dir</em>, <em>gb_out_dir</em>, <em>rodeo_output</em>, <em>bg_domains</em>, <em>max_intergenic_distance=100</em>, <em>product_class='thiopeptide'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo2antismash.html#convert_gbk"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo2antismash.convert_gbk" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a common genbank file to the genbank that mimics antiSMASH output.</p>
+<p>Adds a feature ‘cluster’ with information about the class of the product.
+The coordinates of this feature are boundaries of the group of adjacent genes on the same strand that includes RODEO query.
+Marks genes with given domains as biosynthetic.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>gb_dir</strong> (<em>str</em>) – Directory with input genbank files.</li>
+<li><strong>gb_out_dir</strong> (<em>str</em>) – Directory to store the output.</li>
+<li><strong>rodeo_output</strong> (<a class="reference internal" href="#rodeo_utils.rodeo_utils.RodeoOutput" title="rodeo_utils.rodeo_utils.RodeoOutput"><em>RodeoOutput</em></a>) – RODEO output to use as a reference.</li>
+<li><strong>bg_domains</strong> (<em>list</em>) – List of Pfam or TIGRFAMs IDs for domains that are important for your product biosynthesis.</li>
+<li><strong>max_intergenic_distance</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum distance (nt) between genes within the biosynthetic gene cluster (default: 100).</li>
+<li><strong>product_class</strong> (<em>string</em><em>, </em><em>optional</em>) – A putative class of the final product (default: thiopeptide).</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">True if successful, False otherwise.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rodeo_utils.rodeo_utils">
+<span id="rodeo-utils-rodeo-utils-module"></span><h2>rodeo_utils.rodeo_utils module<a class="headerlink" href="#module-rodeo_utils.rodeo_utils" title="Permalink to this headline">¶</a></h2>
+<p>Main module of the package.
+Provides RODEO output iterator and a class to store information for a single query.</p>
+<dl class="exception">
+<dt id="rodeo_utils.rodeo_utils.RodeoDirError">
+<em class="property">exception </em><code class="descclassname">rodeo_utils.rodeo_utils.</code><code class="descname">RodeoDirError</code><span class="sig-paren">(</span><em>rod_dir</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo_utils.html#RodeoDirError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo_utils.RodeoDirError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></p>
+<p>Exception to raise if rodeo_output_iterator failed to infer the structure of the given directory.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="rodeo_utils.rodeo_utils.RodeoOutput">
+<em class="property">class </em><code class="descclassname">rodeo_utils.rodeo_utils.</code><code class="descname">RodeoOutput</code><span class="sig-paren">(</span><em>table</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo_utils.html#RodeoOutput"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo_utils.RodeoOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Object that stores rodeo output for a single query as attributes.</p>
+<dl class="attribute">
+<dt id="rodeo_utils.rodeo_utils.RodeoOutput.query">
+<code class="descname">query</code><em class="property"> = None</em><a class="headerlink" href="#rodeo_utils.rodeo_utils.RodeoOutput.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accession number of the query protein.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="rodeo_utils.rodeo_utils.RodeoOutput.table">
+<code class="descname">table</code><em class="property"> = None</em><a class="headerlink" href="#rodeo_utils.rodeo_utils.RodeoOutput.table" title="Permalink to this definition">¶</a></dt>
+<dd><p>Corresponding part of rodeo output main_co_occur.csv table. Contains rows of the table as lists.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Type:</th><td class="field-body">list of list</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="rodeo_utils.rodeo_utils.RodeoOutput.table_proccessing">
+<code class="descname">table_proccessing</code><span class="sig-paren">(</span><em>bg_domains</em>, <em>n</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo_utils.html#RodeoOutput.table_proccessing"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo_utils.RodeoOutput.table_proccessing" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="rodeo_utils.rodeo_utils.rodeo_output_iterator">
+<code class="descclassname">rodeo_utils.rodeo_utils.</code><code class="descname">rodeo_output_iterator</code><span class="sig-paren">(</span><em>rod_dir</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/rodeo_utils/rodeo_utils.html#rodeo_output_iterator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#rodeo_utils.rodeo_utils.rodeo_output_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iterate over RODEO output.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>rod_dir</strong> (<em>str</em>) – Path to RODEO output.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Yields:</th><td class="field-body"><em>RodeoOutput</em> – An object with the results for a single query.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><a class="reference internal" href="#rodeo_utils.rodeo_utils.RodeoDirError" title="rodeo_utils.rodeo_utils.RodeoDirError"><code class="xref py py-exc docutils literal notranslate"><span class="pre">RodeoDirError</span></code></a> – If the given directory is neither RODEO or RIPPER output</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-rodeo_utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-rodeo_utils" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">rodeo-utils</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../main.html">Main</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../convert.html">Create files mimicing antiSMASH output</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../accessory.html">Accessory functions</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Dmitry Bikmetov.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/source/rodeo_utils.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

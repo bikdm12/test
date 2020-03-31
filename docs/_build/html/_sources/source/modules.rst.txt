@@ -1,0 +1,8 @@
+rodeo_utils
+===========
+
+.. toctree::
+   :maxdepth: 4
+
+   rodeo_utils
+   setup
